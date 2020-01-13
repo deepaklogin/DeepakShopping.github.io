@@ -1,0 +1,263 @@
+<html>
+<body>
+Name:-<input type="text" id="n1" onblur="Tna()" placeholder="Please Enter Your Name" style="width:17%"><span id="n11" style="color:red;"></span><br><br>
+Email:-<input type="text" id="n2" onblur="Tem()" placeholder="Please Enter Your Email-id" style="width:17%"><span id="n12" style="color:red;"></span><br><br>
+Phone Number:-<input type="text" id="n3" onblur="Tph()" maxlength="10" placeholder="Please Enter Phone Number" style="width:17%"><span id="n13" style="color:red;"></span><br><br>
+product:-<select onchange="food()" id="f">
+<option value="s">--Select--</option>
+<option value="veg">veg</option>
+<option value="nonveg">non veg</option>
+</select>
+Rate:-<input type="text" id="r" readonly>
+Quantity:-<select id="q">
+<option value="0">--Select--</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+</select>
+Image:-<img src="" width="100" height="100" id="i">
+<button onclick="cart()">Add To Cart</button><br><br>
+<table border="1px solid black" width="800px" height="400px" id="tab1">
+<tr style="text-align:center">
+<td>Product</td>
+<td>Rate</td>
+<td>Quantity</td>
+<td>Image</td>
+<td>Clear</td>
+</tr>
+<tr style="text-align:center">
+<td><input type="text" id="p1" value="0" readonly></td>
+<td><input type="text" id="r1" value="0" readonly></td>
+<td><input type="text" id="q1" value="0" readonly></td>
+<td><img src="" width="60px" id="m1"></td>
+<td><button onclick="clr1()">Clear</button></td>
+</tr>
+<tr style="text-align:center">
+<td><input type="text" id="p2" value="0" readonly></td>
+<td><input type="text" id="r2" value="0" readonly></td>
+<td><input type="text" id="q2" value="0" readonly></td>
+<td><img src="" width="60px" id="m2"></td>
+<td><button onclick="clr2()">Clear</button></td>
+</tr>
+<tr style="text-align:center">
+<td><input type="text" id="p3" value="0" readonly></td>
+<td><input type="text" id="r3" value="0" readonly></td>
+<td><input type="text" id="q3" value="0" readonly></td>
+<td><img src="" width="60px" id="m3"></td>
+<td><button onclick="clr3()">Clear</button></td>
+</tr>
+</table><br>
+<button style="padding:5px 15px" onclick="total()">Bill</button>
+<br>
+<textarea readonly cols="80" rows="20" id="ta1"></textarea>
+</body>
+<script>
+function Tna()
+{
+   var n=document.getElementById("n1").value;
+   var nc=/^[a-zA-Z ]+$/;
+   if(!n.match(nc))
+   {
+     document.getElementById("n11").innerHTML="please enter valid name";
+	 return 'n';
+   }
+   else
+   {
+      document.getElementById("n11").innerHTML="";
+	  return 'y';
+   }
+}
+function Tem()
+{
+   var n=document.getElementById("n2").value;
+   var nc=/^[a-zA-Z0-9]+\@[a-zA-Z]+\.[a-zA-Z.]{2,6}$/;
+   if(!n.match(nc))
+   {
+     document.getElementById("n12").innerHTML="please enter valid email id";
+	 return 'n';
+   }
+   else
+   {
+      document.getElementById("n12").innerHTML="";
+	  return 'y';
+   }
+}
+function Tph()
+{
+   var n=document.getElementById("n3").value;
+   var nc=/^[0-9]{10,10}$/;
+   if(!n.match(nc))
+   {
+     document.getElementById("n13").innerHTML="please enter valid mobile number";
+	 return 'n';
+   }
+   else
+   {
+      document.getElementById("n13").innerHTML="";
+	  return 'y';
+   }
+}
+function food()
+{
+   var food=document.getElementById("f").value;
+   if(food=='veg')
+   {
+   document.getElementById("r").value=200;
+   document.getElementById("i").src='download.jpg';
+   
+   }
+   else 
+   if(food=='nonveg')
+   {
+   document.getElementById("r").value=500;
+   document.getElementById("i").src='download1.jpg';
+   }
+   else
+   {
+   document.getElementById("r").value="0";
+   document.getElementById("i").src=' ';
+   }
+}
+
+function cart()
+{
+  var f,q,r,i;
+  f=document.getElementById("f").value;
+  q=document.getElementById("q").value;
+  r=document.getElementById("r").value;
+  i=document.getElementById("i").src;
+  if(f!='select'&&q!='0')
+  {
+    var p1,p2,p3;
+	p1=document.getElementById("p1").value;
+	p2=document.getElementById("p2").value;
+	p3=document.getElementById("p3").value;
+  }
+  if(p1=='0')
+  {
+  document.getElementById("p1").value=f;
+  document.getElementById("r1").value=r;
+  document.getElementById("q1").value=q;
+  document.getElementById("m1").src=i;
+  } 
+  else if(p2=='0')
+  {
+  document.getElementById("p2").value=f;
+  document.getElementById("r2").value=r;
+  document.getElementById("q2").value=q;
+  document.getElementById("m2").src=i;
+  }
+  else if(p3=='0')
+  {
+  document.getElementById("p3").value=f;
+  document.getElementById("r3").value=r;
+  document.getElementById("q3").value=q;
+  document.getElementById("m3").src=i;
+  }
+  else
+  {
+    alert("cart is full!");
+  }
+}
+
+function clr1()
+{
+  document.getElementById("p1").value="0";
+  document.getElementById("r1").value="0";
+  document.getElementById("q1").value="0";
+  document.getElementById("m1").src="";
+  
+}
+function clr2()
+{
+  document.getElementById("p2").value="0";
+  document.getElementById("r2").value="0";
+  document.getElementById("q2").value="0";
+  document.getElementById("m2").src="";
+  
+}
+function clr3()
+{
+  document.getElementById("p3").value="0";
+  document.getElementById("r3").value="0";
+  document.getElementById("q3").value="0";
+  document.getElementById("m3").src="";
+}
+function total()
+{
+var p1,n,e,pn,r1,q1,a1=0;
+if(Tna()=='y'&&Tem()=='y'&&Tph()=='y')
+{
+n=document.getElementById("n1").value;
+pn=document.getElementById("n3").value;
+e=document.getElementById("n2").value;
+p1=document.getElementById("p1").value;
+q1=document.getElementById("q1").value;
+r1=document.getElementById("r1").value;
+if(p1!='s1' && q1!='0')
+{
+a1=r1*q1;
+}
+var p2,r2,q2,a2=0;
+p2=document.getElementById("p2").value;
+q2=document.getElementById("q2").value;
+r2=document.getElementById("r2").value;
+if(p2!='s2' && q2!='0')
+{
+a2=r2*q2;
+}
+var p3,r3,q3,a3=0;
+p3=document.getElementById("p3").value;
+q3=document.getElementById("q3").value;
+r3=document.getElementById("r3").value;
+if(p3!='s3' && q3!='0')
+{
+a3=r3*q3;
+}
+var t=a1+a2+a3;
+if(t>0)
+{
+   document.getElementById("ta1").value="Dear "+n;
+   document.getElementById("ta1").value+="\n Your Billing detials are here \n";
+
+if(p1!='s1' && q1!='0'){
+    document.getElementById("ta1").value+='\n Mobile brand is:'+p1;
+    document.getElementById("ta1").value+='\n Mobile quantity is:'+q1;
+    document.getElementById("ta1").value+='\n Total money is:'+a1+'\n';
+}
+if(p2!='s1' && q2!='0'){
+    document.getElementById("ta1").value+='\n Mobile brand is:'+p2;
+    document.getElementById("ta1").value+='\n Mobile quantity is:'+q2;
+    document.getElementById("ta1").value+='\n Total money is:'+a2+'\n';
+}
+if(p3!='s1' && q3!='0'){
+    document.getElementById("ta1").value+='\n Mobile brand is:'+p3;
+    document.getElementById("ta1").value+='\n Mobile quantity is:'+q3;
+    document.getElementById("ta1").value+='\n Total money is:'+a3+'\n';
+}
+document.getElementById("ta1").value+='\n total amount='+t+'\n';
+document.getElementById("ta1").value+='\n We send message in given email Id='+e;
+document.getElementById("ta1").value+='\n We send tracking message in given phone number='+pn;
+}
+}
+else
+{
+    alert("please enter product,Quantity and information details");
+    Tna();
+	Tem();
+	Tph();
+	
+}
+}
+</script>
+</html>
+
+
+
+
+
+
+
+
